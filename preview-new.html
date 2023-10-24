@@ -15,16 +15,39 @@
 });
 
     api.authenticate().then (() => {
-        api.call('Get', {
-    typeName: 'Device',
-    resultsLimit: 1
-}, function (result) {
-    if (result) {
-        console.log(result);
-    }
-}, function (err) {
-    console.error(err);
-});
+        alert('1');
+       api.call("Get", {
+
+        typeName: "User",
+
+        search: {
+
+            name: 'waleed.ghous@gomotive.com',
+
+        }
+
+    }, function (result) {
+
+
+        // Perform your Business Logic Here
+
+// send the sessionId to your remote server, make a sample API call such as Get Device using this sessionId and if the call is successful, you can authenticate the user on your end.
+
+        if (!result || !result.length) {
+
+            var msg = "Could not find user: " + credentials.userName;
+
+            console.log(msg);
+
+        }
+
+
+    }, function (error) {
+
+        console.log(error);
+
+    });
+
     });
 
 
