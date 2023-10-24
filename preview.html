@@ -5,23 +5,39 @@
     <!-- This will grab the most up to date version of the api wrapper -->
    <script src="https://cdn.jsdelivr.net/npm/mg-api-js"></script>
     <script>
-        alert('1'); 
-     // const authentication = {
-     //        credentials: {
-     //            database: 'demo_motive',
-     //            userName: 'waleed.ghous@gomotive.com',
-     //            password: 'Geotab.123'
-     //        },
-     //        path: 'https://mypreview.geotab.com'
-     //    }
-     //    const api = new GeotabApi(authentication);
-     //    console.log('API', api); 
-
-new GeotabApi(function (authenticateCallback) {
-    authenticateCallback('mypreview.geotab.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.123', function(err) {
+        var api = GeotabApi(function (authenticateCallback) {
+    authenticateCallback('waleed.ghous@gomotive.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.12', function(err) {
         console.error(err);
     });
 });
+
+api.call('Get', {
+    typeName: 'Device',
+    resultsLimit: 1
+}, function (result) {
+    if (result) {
+        console.log(result);
+    }
+}, function (err) {
+    console.error(err);
+});
+//         alert('1'); 
+//      // const authentication = {
+//      //        credentials: {
+//      //            database: 'demo_motive',
+//      //            userName: 'waleed.ghous@gomotive.com',
+//      //            password: 'Geotab.123'
+//      //        },
+//      //        path: 'https://mypreview.geotab.com'
+//      //    }
+//      //    const api = new GeotabApi(authentication);
+//      //    console.log('API', api); 
+
+// new GeotabApi(function (authenticateCallback) {
+//     authenticateCallback('mypreview.geotab.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.123', function(err) {
+//         console.error(err);
+//     });
+// });
         
         
     </script>
