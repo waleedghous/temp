@@ -16,7 +16,9 @@
         }
         const api = new GeotabApi(authentication);
         console.log('API', api); 
-        
+
+
+              
     api.call("Get", {
 
         typeName: "User",
@@ -48,9 +50,9 @@
         console.log(error);
 
     });
-
-
-}, false);
+ 
+        
+        
     </script>
     <script>
         geotab.addin.myCustomPage1 = () => {
