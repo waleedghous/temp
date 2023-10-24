@@ -17,15 +17,16 @@
         const api = new GeotabApi(authentication);
         console.log('API', api); 
 
-
-              
+api.getSession(function (credentials, server) {
+    alert(2);
+    console.log('credentials', credentials);
     api.call("Get", {
 
         typeName: "User",
 
         search: {
 
-            name: 'waleed.ghous@gomotive.com',
+            name: credentials.userName,
 
         }
 
@@ -50,7 +51,7 @@
         console.log(error);
 
     });
- 
+}, false); 
         
         
     </script>
