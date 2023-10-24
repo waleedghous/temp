@@ -5,13 +5,17 @@
     <!-- This will grab the most up to date version of the api wrapper -->
    <script src="https://cdn.jsdelivr.net/npm/mg-api-js"></script>
     <script>
-        var api = new GeotabApi(function (authenticateCallback) {
-    authenticateCallback('waleed.ghous@gomotive.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.12', function(err) {
-        console.error(err);
-    });
+        const api = new GeotabApi({
+    credentials: {
+        database: 'demo_motive',
+        userName: 'waleed.ghous@gomotive.com',
+        password: 'Geotab.123'
+    },
+    path: 'waleed.ghous@gomotive.com'
 });
 
-api.call('Get', {
+    api.authenticate().then (() => {
+        api.call('Get', {
     typeName: 'Device',
     resultsLimit: 1
 }, function (result) {
@@ -21,6 +25,9 @@ api.call('Get', {
 }, function (err) {
     console.error(err);
 });
+    });
+
+
 //         alert('1'); 
 //      // const authentication = {
 //      //        credentials: {
