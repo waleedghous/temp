@@ -16,6 +16,41 @@
         }
         const api = new GeotabApi(authentication);
         console.log('API', api); 
+        
+    api.call("Get", {
+
+        typeName: "User",
+
+        search: {
+
+            name: credentials.userName
+
+        }
+
+    }, function (result) {
+            console.log('result', result);
+
+        // Perform your Business Logic Here
+
+// send the sessionId to your remote server, make a sample API call such as Get Device using this sessionId and if the call is successful, you can authenticate the user on your end.
+    
+        if (!result || !result.length) {
+
+            var msg = "Could not find user: " + credentials.userName;
+
+            console.log(msg);
+
+        }
+
+
+    }, function (error) {
+
+        console.log(error);
+
+    });
+
+
+}, false);
     </script>
     <script>
         geotab.addin.myCustomPage1 = () => {
