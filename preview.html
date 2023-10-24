@@ -17,7 +17,7 @@
      //    const api = new GeotabApi(authentication);
      //    console.log('API', api); 
 
-GeotabApi(function (authenticateCallback) {
+new GeotabApi(function (authenticateCallback) {
     authenticateCallback('mypreview.geotab.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.123', function(err) {
         console.error(err);
     });
