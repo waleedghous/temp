@@ -5,7 +5,7 @@
     <!-- This will grab the most up to date version of the api wrapper -->
    <script src="https://cdn.jsdelivr.net/npm/mg-api-js"></script>
     <script>
-        var api = GeotabApi(function (authenticateCallback) {
+        var api = new GeotabApi(function (authenticateCallback) {
     authenticateCallback('waleed.ghous@gomotive.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.12', function(err) {
         console.error(err);
     });
