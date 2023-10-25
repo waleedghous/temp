@@ -8,46 +8,13 @@
         const api = new GeotabApi({
     credentials: {
         database: 'demo_motive',
-        userName: 'waleed.ghous@gomotive.com',
-        password: 'Gomotive@123'
     },
     path: 'mypreview.geotab.com'
 });
 
-    api.authenticate().then (() => {
-        alert('1');
-       api.call("Get", {
-
-        typeName: "User",
-
-        search: {
-
-            name: 'waleed.ghous@gomotive.com',
-
-        }
-
-    }, function (result) {
-        alert(2);
-           console.log(result);
-
-        // Perform your Business Logic Here
-
-// send the sessionId to your remote server, make a sample API call such as Get Device using this sessionId and if the call is successful, you can authenticate the user on your end.
-
-        if (!result || !result.length) {
-
-            var msg = "Could not find user: " + credentials.userName;
-
-            console.log(msg);
-
-        }
-
-
-    }, function (error) {
-
-        console.log(error);
-
-    });
+    api.getSession(function (credentials, server) {
+        alert('3');
+            console.log(credentials);
 
     });
 
