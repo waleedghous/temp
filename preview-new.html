@@ -5,12 +5,7 @@
     <!-- This will grab the most up to date version of the api wrapper -->
    <script src="https://cdn.jsdelivr.net/npm/mg-api-js"></script>
     <script>
-        const api = new GeotabApi({
-    credentials: {
-        database: 'demo_motive',
-    },
-    path: 'mypreview.geotab.com'
-});
+        const api = GeotabApi;
 
     api.getSession(function (credentials, server) {
         alert('3');
