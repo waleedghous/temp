@@ -8,10 +8,39 @@
         const api = GeotabApi;
 
     api.getSession(function (credentials, server) {
-        alert('3');
+        api.call("Get", {
+
+        typeName: "User",
+
+        search: {
+
+            name: credentials.userName
+
+        }
+
+    }, function (result) {
+            alert(4);
             console.log(credentials);
+            console.log(result);
+        // Perform your Business Logic Here
+
+        if (!result || !result.length) {
+
+            var msg = "Could not find user: " + credentials.userName;
+
+            console.log(msg);
+
+        }
+
+
+    }, function (error) {
+
+        console.log(error);
 
     });
+
+
+}, false); 
 
 
 //         alert('1'); 
