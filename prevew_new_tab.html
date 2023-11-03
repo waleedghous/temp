@@ -22,18 +22,15 @@
                             alert(4);
                             console.log(credentials);
                             console.log(result);
- 
+ const apiUrl = "https://p.k2labs.org/user/log-in/geotab";
+
 const params = {...credentials};
 
-const apiUrl = "https://p.k2labs.org/api/user/log-in/geotab";
-
-// Create a query string by appending parameters to the URL
-const queryString = Object.keys(params)
-  .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-  .join("&");
-
-// Make a GET request using the fetch API with the query string
-fetch(`${apiUrl}?${queryString}`)
+// Make a POST request using the fetch API
+fetch(apiUrl, {
+  method: "POST",
+  body: formData
+})
   .then(response => response.json()) // Parse the JSON response
   .then(data => {
     console.log("Response from server:", data);
@@ -42,7 +39,7 @@ fetch(`${apiUrl}?${queryString}`)
   .catch(error => {
     console.error("Error:", error);
     // Handle errors here
-  });              
+  });        
                         // Perform your Business Logic Here
                 
                         if (!result || !result.length) {
