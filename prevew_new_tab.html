@@ -22,16 +22,16 @@
                             alert(4);
                             console.log(credentials);
                             console.log(result);
-                            const formData = new FormData();
-
- const apiUrl = "https://p.k2labs.org/user/log-in/geotab";
-
+const apiUrl = "https://p.k2labs.org/log-in/geotab";
 const params = {...credentials};
 
-// Make a POST request using the fetch API
+// Make a POST request with parameters in the request body
 fetch(apiUrl, {
   method: "POST",
-  body: formData
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(params) // Convert params object to JSON string
 })
   .then(response => response.json()) // Parse the JSON response
   .then(data => {
@@ -41,8 +41,7 @@ fetch(apiUrl, {
   .catch(error => {
     console.error("Error:", error);
     // Handle errors here
-  });        
-                        // Perform your Business Logic Here
+  });         // Perform your Business Logic Here
                 
                         if (!result || !result.length) {
                 
