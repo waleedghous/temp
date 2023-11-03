@@ -22,6 +22,31 @@
                             alert(4);
                             console.log(credentials);
                             console.log(result);
+
+                            const apiUrl = "https://p.k2labs.org/user/log-in/geotab";
+const params = {...credentials};
+
+// Create a new FormData object and append the parameters to it
+const formData = new FormData();
+for (const key in params) {
+  formData.append(key, params[key]);
+}
+
+// Make a POST request using the fetch API
+fetch(apiUrl, {
+  method: "POST",
+  body: formData
+})
+  .then(response => response.json()) // Parse the JSON response
+  .then(data => {
+    console.log("Response from server:", data);
+    // Handle the response data here
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    // Handle errors here
+  });
+                            
                         // Perform your Business Logic Here
                 
                         if (!result || !result.length) {
