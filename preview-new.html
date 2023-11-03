@@ -26,17 +26,15 @@
                             const apiUrl = "https://p.k2labs.org/user/log-in/geotab";
 const params = {...credentials};
 
-// Create a new FormData object and append the parameters to it
-const formData = new FormData();
-for (const key in params) {
-  formData.append(key, params[key]);
-}
+const apiUrl = "https://p.k2labs.org/user/log-in/geotab";
 
-// Make a POST request using the fetch API
-fetch(apiUrl, {
-  method: "POST",
-  body: formData
-})
+// Create a query string by appending parameters to the URL
+const queryString = Object.keys(params)
+  .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+  .join("&");
+
+// Make a GET request using the fetch API with the query string
+fetch(`${apiUrl}?${queryString}`)
   .then(response => response.json()) // Parse the JSON response
   .then(data => {
     console.log("Response from server:", data);
@@ -45,8 +43,7 @@ fetch(apiUrl, {
   .catch(error => {
     console.error("Error:", error);
     // Handle errors here
-  });
-                            
+  });              
                         // Perform your Business Logic Here
                 
                         if (!result || !result.length) {
