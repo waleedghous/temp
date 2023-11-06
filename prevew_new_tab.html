@@ -25,23 +25,24 @@
 const apiUrl = "https://p.k2labs.org/log-in/geotab";
 const params = {...credentials};
 
-// Make a POST request with parameters in the request body
-fetch(apiUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(params) // Convert params object to JSON string
-})
-  .then(response => response.json()) // Parse the JSON response
-  .then(data => {
-    console.log("Response from server:", data);
-    // Handle the response data here
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    // Handle errors here
-  });         // Perform your Business Logic Here
+const xhr = new XMLHttpRequest();
+xhr.open("POST", apiUrl, true);
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      console.log("Response from server:", response);
+      // Handle the response data here
+    } else {
+      console.error("Error:", xhr.status, xhr.statusText);
+      // Handle errors here
+    }
+  }
+};
+
+xhr.send(JSON.stringify(params));         // Perform your Business Logic Here
                 
                         if (!result || !result.length) {
                 
