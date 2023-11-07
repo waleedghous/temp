@@ -6,10 +6,17 @@
         geotab.addin.myCustomPage1 = () => {
 
             return {
-                initialize(api, state, callback) {
-                    setTimeout(function(){
-                        callback();
-                    }, 3000);
+                initialize(api, state, callback) { 
+                                    // Assuming data contains the URL for the iframe
+                                    const iframeUrl = 'https://app.p.k2labs.org/en-US/#/safety/overview'; // Replace with the actual property name in your response data
+                                    const iframeElement = document.createElement("iframe");
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
+                                    iframeElement.src = iframeUrl;
+
+                                    // Append the iframe to the body
+                                    document.body.appendChild(iframeElement);
                    
                 },
                 focus(api, state) {
@@ -24,7 +31,6 @@
 </head>
 
 <body >
-    <iframe width=100% height=100% referrerpolicy="origin-when-cross-origin" src="https://app.p.k2labs.org/en-US/#/safety/overview"></iframe>
 </body>
 
 </html>
