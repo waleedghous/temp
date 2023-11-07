@@ -33,6 +33,8 @@
                             })
                                 .then(response => response.json())
                                 .then(data => {
+                                    alert(Auth Token should be there);
+                                    console.log(data);
                                     callback();
                                 })
                                 .catch(error => {
