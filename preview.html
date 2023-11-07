@@ -24,20 +24,14 @@
                                     "Content-type": "application/json; charset=UTF-8"
                                 }
                             })
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log("Response from server:", data);
-                                    // Assuming data contains the URL for the iframe
-                                    const iframeUrl = data.iframeUrl; // Replace with the actual property name in your response data
-                                    const iframeElement = document.createElement("iframe");
+                               
+                                .then(() => {
+                                    const iframeUrl = 'https://app.p.k2labs.org/en-US/#/safety/overview'; // Replace with the actual property name in your response data
+                                    const iframeElement = document.getElementById('motive-iframe');
                                     iframeElement.width = "100%";
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
                                     iframeElement.src = iframeUrl;
-
-                                    // Append the iframe to the body
-                                    document.body.appendChild(iframeElement);
-
                                     callback();
                                 })
                                 .catch(error => {
