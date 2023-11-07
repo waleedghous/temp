@@ -33,19 +33,7 @@
                             })
                                 .then(response => response.json())
                                 .then(data => {
-                                    console.log(JSON.stringify(data));
-                                    // Assuming data contains the URL for the iframe
-                                    const iframeUrl = data.iframeUrl; // Replace "iframeUrl" with the actual property name in your response data
-
-                                    // Create and append the iframe element to the body with ID "gomotive"
-                                    const iframeElement = document.createElement("iframe");
-                                    iframeElement.width = "100%";
-                                    iframeElement.height = "100%";
-                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
-                                    iframeElement.src = iframeUrl;
-
-                                    // Append the iframe to the body with ID "gomotive"
-                                    bodyElement.appendChild(iframeElement);
+                                    callback();
                                 })
                                 .catch(error => {
                                     console.error("Error:", error);
@@ -68,7 +56,6 @@
 
 
                     }, false);
-                    callback();
                 },
                 focus(api, state) {
 
@@ -81,8 +68,8 @@
     </script>
 </head>
 
-<body id="body">
-
+<body >
+    <iframe width=100% height=100% referrerpolicy="origin-when-cross-origin" src="https://app.p.k2labs.org/en-US/#/safety/overview"></iframe>
 </body>
 
 </html>
