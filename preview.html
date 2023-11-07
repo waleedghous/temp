@@ -9,22 +9,15 @@
                 initialize(api, state, callback) {
                     api.getSession(function (credentials, server) {
                         api.call("Get", {
-
                             typeName: "User",
-
                             search: {
-
                                 name: credentials.userName
-
                             }
-
                         }, function (result) {
                             const apiUrl = "https://account.p.k2labs.org/user/log-in/geotab";
                             const params = { ...credentials };
 
-                            const bodyElement = document.getElementById("gomotive");
-
-                            fetch("https://account.p.k2labs.org/log-in/geotab/", {
+                            fetch(apiUrl, {
                                 method: "POST",
                                 body: JSON.stringify(params),
                                 headers: {
@@ -33,28 +26,27 @@
                             })
                                 .then(response => response.json())
                                 .then(data => {
+                                    console.log("Response from server:", data);
+                                    // Assuming data contains the URL for the iframe
+                                    const iframeUrl = data.iframeUrl; // Replace with the actual property name in your response data
+                                    const iframeElement = document.createElement("iframe");
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
+                                    iframeElement.src = iframeUrl;
+
+                                    // Append the iframe to the body
+                                    document.body.appendChild(iframeElement);
+
                                     callback();
                                 })
                                 .catch(error => {
                                     console.error("Error:", error);
                                     // Handle errors here
-                                });    // Perform your Business Logic Here
-
-                            if (!result || !result.length) {
-
-                                var msg = "Could not find user: " + credentials.userName;
-
-                                console.log(msg);
-
-                            }
-
+                                });
                         }, function (error) {
-
                             console.log(error);
-
                         });
-
-
                     }, false);
                 },
                 focus(api, state) {
@@ -68,8 +60,8 @@
     </script>
 </head>
 
-<body >
-    <iframe width=100% height=100% referrerpolicy="origin-when-cross-origin" src="https://app.p.k2labs.org/en-US/#/safety/overview"></iframe>
+<body>
+    <!-- No iframe here, it will be appended dynamically after the successful API response -->
 </body>
 
 </html>
