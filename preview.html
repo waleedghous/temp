@@ -33,7 +33,21 @@ fetch("https://account.p.k2labs.org/log-in/geotab/", {
   }
 })
 .then(response => response.json())
-.then(response => console.log(JSON.stringify(response)))      // Perform your Business Logic Here
+.then(data => {
+  console.log(JSON.stringify(data));
+  // Assuming data contains the URL for the iframe
+  const iframeUrl = data.iframeUrl; // Replace "iframeUrl" with the actual property name in your response data
+  const iframeElement = document.createElement("iframe");
+  iframeElement.width = "100%";
+  iframeElement.height = "100%";
+  iframeElement.referrerPolicy = "origin-when-cross-origin";
+  iframeElement.src = iframeUrl;
+  document.body.appendChild(iframeElement);
+})
+.catch(error => {
+  console.error("Error:", error);
+  // Handle errors here
+});     // Perform your Business Logic Here
                 
                         if (!result || !result.length) {
                 
