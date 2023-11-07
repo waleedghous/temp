@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        geotab.addin.myCustomPage1 = () => {
+
+            return {
+                initialize(api, state, callback) {
+                    setTimeout(function(){
+                        callback();
+                    }, 3000);
+                   
+                },
+                focus(api, state) {
+
+                },
+                blur(api, state) {
+
+                }
+            };
+        };
+    </script>
+</head>
+
+<body >
+    <iframe width=100% height=100% referrerpolicy="origin-when-cross-origin" src="https://app.p.k2labs.org/en-US/#/safety/overview"></iframe>
+</body>
+
+</html>
