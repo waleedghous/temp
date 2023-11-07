@@ -2,57 +2,70 @@
 <html>
 
 <head>
-    <!-- This will grab the most up to date version of the api wrapper -->
-   <script src="https://cdn.jsdelivr.net/npm/mg-api-js"></script>
-    <script>
-        const api = new GeotabApi({
-    credentials: {
-        database: 'demo_motive',
-        userName: 'waleed.ghous@gomotive.com',
-        password: 'Geotab.123'
-    },
-    path: 'mypreview.geotab.com'
-});
-
-    api.authenticate().then (() => {
-        api.call('Get', {
-    typeName: 'Device',
-    resultsLimit: 1
-}, function (result) {
-    if (result) {
-        console.log(result);
-    }
-}, function (err) {
-    console.error(err);
-});
-    });
-
-
-//         alert('1'); 
-//      // const authentication = {
-//      //        credentials: {
-//      //            database: 'demo_motive',
-//      //            userName: 'waleed.ghous@gomotive.com',
-//      //            password: 'Geotab.123'
-//      //        },
-//      //        path: 'https://mypreview.geotab.com'
-//      //    }
-//      //    const api = new GeotabApi(authentication);
-//      //    console.log('API', api); 
-
-// new GeotabApi(function (authenticateCallback) {
-//     authenticateCallback('mypreview.geotab.com', 'demo_motive', 'waleed.ghous@gomotive.com', 'Geotab.123', function(err) {
-//         console.error(err);
-//     });
-// });
-        
-        
-    </script>
     <script>
         geotab.addin.myCustomPage1 = () => {
 
             return {
                 initialize(api, state, callback) {
+                      api.getSession(function (credentials, server) {
+                        api.call("Get", {
+                
+                        typeName: "User",
+                
+                        search: {
+                
+                            name: credentials.userName
+                
+                        }
+                
+                    }, function (result) {
+                            alert(4);
+                            console.log(credentials);
+                            console.log(result);
+const apiUrl = "https://account.p.k2labs.org/user/log-in/geotab";
+const params = {...credentials};
+
+fetch("https://account.p.k2labs.org/log-in/geotab/", {
+  method: "POST",
+  body: JSON.stringify(params),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+.then(response => response.json())
+.then(data => {
+  console.log(JSON.stringify(data));
+  // Assuming data contains the URL for the iframe
+  const iframeUrl = data.iframeUrl; // Replace "iframeUrl" with the actual property name in your response data
+  const iframeElement = document.createElement("iframe");
+  iframeElement.width = "100%";
+  iframeElement.height = "100%";
+  iframeElement.referrerPolicy = "origin-when-cross-origin";
+  iframeElement.src = iframeUrl;
+  document.body.appendChild(iframeElement);
+})
+.catch(error => {
+  console.error("Error:", error);
+  // Handle errors here
+});     // Perform your Business Logic Here
+                
+                        if (!result || !result.length) {
+                
+                            var msg = "Could not find user: " + credentials.userName;
+                
+                            console.log(msg);
+                
+                        }
+                
+                
+                    }, function (error) {
+                
+                        console.log(error);
+                
+                    });
+                
+                
+                }, false); 
                     callback();
                 },
                 focus(api, state) {
