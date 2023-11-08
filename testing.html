@@ -6,18 +6,52 @@
         geotab.addin.myCustomPage1 = () => {
 
             return {
-                initialize(api, state, callback) { 
-                                    // Assuming data contains the URL for the iframe
-                                    const iframeUrl = 'https://app.p.k2labs.org/en-US/#/safety/overview'; // Replace with the actual property name in your response data
-                                    const iframeElement = document.createElement("iframe");
+                initialize(api, state, callback) {
+                    api.getSession(function (credentials, server) {
+                        api.call("Get", {
+                            typeName: "User",
+                            search: {
+                                name: credentials.userName
+                            }
+                        }, function (result) {
+                            const apiUrl = "https://account.p.k2labs.org/log-in/geotab";
+                            const params = { ...credentials };
+
+                            fetch(apiUrl, {
+                                method: "POST",
+                                body: JSON.stringify(params),
+                                headers: {
+                                    "Content-type": "application/json; charset=UTF-8"
+                                }
+                            })
+                               
+                                .then(() => {
+                                    alert('Success');
+                                     const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
+                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab/en-US/#/documents/list/docs/all?geotab_auth_token=${token}`; 
+                                    const iframeElement = document.getElementById('motive-iframe');
                                     iframeElement.width = "100%";
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
                                     iframeElement.src = iframeUrl;
-
-                                    // Append the iframe to the body
-                                    document.body.appendChild(iframeElement);
-                   
+                                    callback();
+                                })
+                                .catch(error => {
+                                    console.error("Error:", error);
+                                    alert('Error');
+                                     const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
+                                      const iframeUrl = `https://w2.p.k2labs.org/sso-geotab/en-US/#/documents/list/docs/all?geotab_auth_token=${token}`; 
+                                    const iframeElement = document.getElementById('motive-iframe');
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
+                                    iframeElement.src = iframeUrl;
+                                    callback();
+                                });
+                        }, function (error) {
+                            console.log(error);
+                        });
+                    }, false);
                 },
                 focus(api, state) {
 
@@ -30,7 +64,8 @@
     </script>
 </head>
 
-<body >
+<body>
+    <iframe id="motive-iframe"></iframe>
 </body>
 
 </html>
