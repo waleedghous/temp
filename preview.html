@@ -27,8 +27,8 @@
                                
                                 .then(() => {
                                     alert('Success');
-                                    const iframeUrl = 'https://app.p.k2labs.org/en-US/#/safety/overview'; // Replace with the actual property name in your response data
-                                    const iframeElement = document.getElementById('motive-iframe');
+                                    const token = encodeURIComponent('ODkyNmMwYjU1YmFkY2U5MTk1ZTljNGQ2ZmRiNDE3Zjg3Yjk3NGJkYmQ4MWM5YzgyYjk4NDUyODlmOTgwMmQ3OGY0NTllN2E0Y2Q4MTc5ZTUzNmZiMzhkY2M3ODZmMWNkZjgzMGE1YjhiNjkwMzJmY2I3');
+                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`;
                                     iframeElement.width = "100%";
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
