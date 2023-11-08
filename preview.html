@@ -14,6 +14,7 @@
                                 name: credentials.userName
                             }
                         }, function (result) {
+                            console.log(result);
                             const apiUrl = "https://account.p.k2labs.org/log-in/geotab";
                             const params = { ...credentials };
 
@@ -25,8 +26,8 @@
                                 }
                             })
                                .then(res => res.json())
-                                .then((result) => {
-                                    console.log(result);
+                                .then((data) => {
+                                    console.log(data);
                                     alert('Success');
                                     const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
                                     const iframeUrl = `https://w2.p.k2labs.org/sso-geotab/en-US/#/documents/list/docs/all?geotab_auth_token=${token}`; 
