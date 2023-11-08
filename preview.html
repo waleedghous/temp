@@ -27,7 +27,7 @@
                                
                                 .then(() => {
                                     alert('Success');
-                                    const token = encodeURIComponent('ODkyNmMwYjU1YmFkY2U5MTk1ZTljNGQ2ZmRiNDE3Zjg3Yjk3NGJkYmQ4MWM5YzgyYjk4NDUyODlmOTgwMmQ3OGY0NTllN2E0Y2Q4MTc5ZTUzNmZiMzhkY2M3ODZmMWNkZjgzMGE1YjhiNjkwMzJmY2I3');
+                                    const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
                                     const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`;
                                     iframeElement.width = "100%";
                                     iframeElement.height = "100%";
@@ -36,6 +36,14 @@
                                     callback();
                                 })
                                 .catch(error => {
+                                     alert('Error');
+                                    const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
+                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`;
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
+                                    iframeElement.src = iframeUrl;
+                                    callback();
                                     console.error("Error:", error);
                                     // Handle errors here
                                 });
