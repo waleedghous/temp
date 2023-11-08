@@ -25,7 +25,8 @@
                                 }
                             })
                                
-                                .then(() => {
+                                .then((res) => {
+                                    console.log(res);
                                     alert('Success');
                                      const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
                                     const iframeUrl = `https://w2.p.k2labs.org/sso-geotab/en-US/#/documents/list/docs/all?geotab_auth_token=${token}`; 
