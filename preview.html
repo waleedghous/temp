@@ -27,8 +27,9 @@
                                
                                 .then(() => {
                                     alert('Success');
-                                    const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
-                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`;
+                                     const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
+                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`; 
+                                    const iframeElement = document.getElementById('motive-iframe');
                                     iframeElement.width = "100%";
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
@@ -36,16 +37,16 @@
                                     callback();
                                 })
                                 .catch(error => {
-                                     alert('Error');
-                                    const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
-                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`;
+                                    console.error("Error:", error);
+                                    alert('Error');
+                                     const token = encodeURIComponent('Y2Y4ZDkwYjViNjcyZmFhODIyZTBhNTNmMGEzZGQzZmNmNDM1NGU3NDIyYTY5NzNmODQwMmNjOWYzODZmNWUxNzI2OTQ3YTYxZjUyOTBjMWJhMGY0YTEzZGExMWM0YTU1MWQzOTZlMWMwNWYxZjY3YmM4');
+                                    const iframeUrl = `https://w2.p.k2labs.org/sso-geotab?geotab_auth_token=${token}`; 
+                                    const iframeElement = document.getElementById('motive-iframe');
                                     iframeElement.width = "100%";
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
                                     iframeElement.src = iframeUrl;
                                     callback();
-                                    console.error("Error:", error);
-                                    // Handle errors here
                                 });
                         }, function (error) {
                             console.log(error);
