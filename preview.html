@@ -6,8 +6,7 @@
         // initilization of motives app page as adiin
         geotab.addin.myCustomPage1 = () => {
 
-            return {
-                const loginFailedURL = `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
+            return { 
                 initialize(api, state, callback) {
                     // to get session id<token>, databaseName(like company name), userName (email)
                     api.getSession(function (credentials, server) {
@@ -56,7 +55,7 @@
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
                         
-                                    iframeElement.src = loginFailedURL;
+                                    iframeElement.src =  `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
                                 });
                         }, function (error) {
                              console.log(error);
@@ -65,7 +64,7 @@
                                     iframeElement.height = "100%";
                                     iframeElement.referrerPolicy = "origin-when-cross-origin";
                         
-                                    iframeElement.src = loginFailedURL;
+                                    iframeElement.src =  `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
                         });
                     }, false);
                 },
