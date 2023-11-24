@@ -8,10 +8,6 @@
 
             return {
                 const loginFailedURL = `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
-                const iframeElement = document.getElementById('motive-iframe');
-                iframeElement.width = "100%";
-                iframeElement.height = "100%";
-                iframeElement.referrerPolicy = "origin-when-cross-origin";
                 initialize(api, state, callback) {
                     // to get session id<token>, databaseName(like company name), userName (email)
                     api.getSession(function (credentials, server) {
@@ -44,17 +40,32 @@
                                         auth_token as cookie
                                     */
                                     const token = encodeURIComponent(data.auth_token);
+                                    const iframeElement = document.getElementById('motive-iframe');
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
                                     const iframeUrl = `https://app.p.k2labs.org/en-US/#/safety/overview?geotab_auth_token=${token}`; 
                                     iframeElement.src = iframeUrl;
+                            
                                     callback();
                                 })
                                 .catch(error => {
                                      console.log(error);
+                                      const iframeElement = document.getElementById('motive-iframe');
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
+                        
                                     iframeElement.src = loginFailedURL;
                                 });
                         }, function (error) {
                              console.log(error);
-                            iframeElement.src = loginFailedURL;
+                             const iframeElement = document.getElementById('motive-iframe');
+                                    iframeElement.width = "100%";
+                                    iframeElement.height = "100%";
+                                    iframeElement.referrerPolicy = "origin-when-cross-origin";
+                        
+                                    iframeElement.src = loginFailedURL;
                         });
                     }, false);
                 },
