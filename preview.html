@@ -33,12 +33,15 @@
               })
                 .then(res => {
                   if(res.ok) {
+                    alert('ok');
                     return res.json();
                   } else {
+                     alert('error');
                     throw new Error('User not authorized');
                   }
                 })
                 .then((data) => {
+                   alert('ok handling');
                   /*
                       on success: we navigate user to webapp with geotab_auth_token query param
                       where at boot time we determine that the user is from geotabs iframe and we set
@@ -55,7 +58,7 @@
                   callback();
                 })
                 .catch(error => {
-                  console.log(error);
+                  alert('error1 handling');
                   const iframeElement = document.getElementById('motive-iframe');
                   iframeElement.width = "100%";
                   iframeElement.height = "100%";
@@ -65,7 +68,8 @@
                   callback();
                 });
             }, function (error) {
-              console.log(error);
+                                alert('error2 handling');
+
               const iframeElement = document.getElementById('motive-iframe');
               iframeElement.width = "100%";
               iframeElement.height = "100%";
