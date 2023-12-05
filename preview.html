@@ -21,7 +21,7 @@
                   user identity.
                   k2web calls geotabs API to validate user and generates auth_token for frontend
               */
-              const apiUrl = "https://account.p.k2labs.org/log-in/geotab";
+              const apiUrl = "https://account.gomotive.com/log-in/geotab";
               const params = { ...credentials };
 
               fetch(apiUrl, {
@@ -49,7 +49,7 @@
                   iframeElement.width = "100%";
                   iframeElement.height = "100%";
                   iframeElement.referrerPolicy = "origin-when-cross-origin";
-                  const iframeUrl = `https://app.p.k2labs.org/en-US/#/safety/overview?geotab_auth_token=${token}`;
+                  const iframeUrl = `https://app.gomotive.com/en-US/#/safety/overview?geotab_auth_token=${token}`;
                   iframeElement.src = iframeUrl;
 
                   callback();
@@ -63,8 +63,7 @@
                   iframeElement.src = `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
                   callback();
                 });
-            }, function (error) {
-                                alert('error2 handling');
+            }, function (error) { 
 
               const iframeElement = document.getElementById('motive-iframe');
               iframeElement.width = "100%";
