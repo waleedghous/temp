@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    function loadURLInIframe(iframeUrl) {
+      const iframeElement = document.getElementById('motive-iframe');
+      iframeElement.width = "100%";
+      iframeElement.height = "100%";
+      iframeElement.referrerPolicy = "origin-when-cross-origin";
+      iframeElement.src = iframeUrl;
+    }
+    // initilization of motives app page as adiin
+    geotab.addin.myCustomPage1 = () => {
+
+      return {
+        initialize(api, state, callback) {
+          // to get session id<token>, databaseName(like company name), userName (email)
+          api.getSession(function (credentials, server) {
+            api.call("Get", {
+              typeName: "User",
+              search: {
+                name: credentials.userName
+              }
+            }, function (result) {
+              /*
+                  after geting credientials and getting user object from geotabs API post credientials to k2web to validate
+                  user identity.
+                  k2web calls geotabs API to validate user and generates auth_token for frontend
+              */
+              const apiUrl = "https://account.s.k2labs.org/log-in/geotab";
+              const params = { ...credentials };
+
+              fetch(apiUrl, {
+                method: "POST",
+                body: JSON.stringify(params),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+              })
+                .then(res => {
+                  if(res.ok) { 
+                    return res.json();
+                  } else { 
+                    throw new Error('User not authorized');
+                  }
+                })
+                .then((data) => { 
+                  /*
+                      on success: we navigate user to webapp with geotab_auth_token query param
+                      where at boot time we determine that the user is from geotabs iframe and we set
+                      auth_token as cookie
+                  */
+                  const token = encodeURIComponent(data.auth_token);
+                  const iframeUrl = `https://app.s.k2labs.org/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
+                  loadURLInIframe(iframeUrl)
+                  callback();
+                })
+                .catch(error => { 
+                  loadURLInIframe(`https://app.s.k2labs.org/en-US/#/geotab-auth-fail`);
+                  callback();
+                });
+            }, function (error) { 
+
+              loadURLInIframe(`https://app.s.k2labs.org/en-US/#/geotab-auth-fail`); 
+              callback();
+            });
+          }, false);
+        },
+        focus(api, state) {
+
+        },
+        blur(api, state) {
+
+        }
+      };
+    };
+  </script>
+</head>
+
+<body>
+  <iframe id="motive-iframe"></iframe>
+</body>
+
+</html>
