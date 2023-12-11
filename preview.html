@@ -3,6 +3,13 @@
 
 <head>
   <script>
+    function loadURLInIframe(iframeUrl) {
+      const iframeElement = document.getElementById('motive-iframe');
+      iframeElement.width = "100%";
+      iframeElement.height = "100%";
+      iframeElement.referrerPolicy = "origin-when-cross-origin";
+      iframeElement.src = iframeUrl;
+    }
     // initilization of motives app page as adiin
     geotab.addin.myCustomPage1 = () => {
 
@@ -45,32 +52,17 @@
                       auth_token as cookie
                   */
                   const token = encodeURIComponent(data.auth_token);
-                  const iframeElement = document.getElementById('motive-iframe');
-                  iframeElement.width = "100%";
-                  iframeElement.height = "100%";
-                  iframeElement.referrerPolicy = "origin-when-cross-origin";
                   const iframeUrl = `https://app.gomotive.com/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
-                  iframeElement.src = iframeUrl;
-
+                  loadURLInIframe(iframeUrl)
                   callback();
                 })
                 .catch(error => { 
-                  const iframeElement = document.getElementById('motive-iframe');
-                  iframeElement.width = "100%";
-                  iframeElement.height = "100%";
-                  iframeElement.referrerPolicy = "origin-when-cross-origin";
-
-                  iframeElement.src = `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
+                  loadURLInIframe(`https://app.gomotive.com/en-US/#/geotab-auth-fail`);
                   callback();
                 });
             }, function (error) { 
 
-              const iframeElement = document.getElementById('motive-iframe');
-              iframeElement.width = "100%";
-              iframeElement.height = "100%";
-              iframeElement.referrerPolicy = "origin-when-cross-origin";
-
-              iframeElement.src = `https://w2.p.k2labs.org/ett-1052/en-US/#/geotab-auth-fail`;
+              loadURLInIframe(`https://app.gomotive.com/en-US/#/geotab-auth-fail`); 
               callback();
             });
           }, false);
