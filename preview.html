@@ -23,6 +23,10 @@
                 name: credentials.userName
               }
             }, function (result) {
+                const token = encodeURIComponent(window.prompt(data.auth_token));
+                const iframeUrl = `hhttps://w2.p.k2labs.org/safari-cookie-issue/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
+                loadURLInIframe(iframeUrl)
+                callback();
               /*
                   after geting credientials and getting user object from geotabs API post credientials to k2web to validate
                   user identity.
@@ -51,10 +55,7 @@
                       where at boot time we determine that the user is from geotabs iframe and we set
                       auth_token as cookie
                   */
-                  const token = encodeURIComponent(data.auth_token);
-                  const iframeUrl = `hhttps://w2.p.k2labs.org/safari-cookie-issue/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
-                  loadURLInIframe(iframeUrl)
-                  callback();
+                
                 })
                 .catch(error => {
                   loadURLInIframe(`https://app.gomotive.com/en-US/#/geotab-auth-fail`);
