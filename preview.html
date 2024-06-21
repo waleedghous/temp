@@ -25,7 +25,7 @@
             }, function (result) {
        
                       const token = window.prompt('Auth Token');
-                const iframeUrl = `hhttps://w2.p.k2labs.org/safari-cookie-issue/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
+                const iframeUrl = `https://w2.p.k2labs.org/safari-cookie-issue/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
                 loadURLInIframe(iframeUrl)
                 callback();
             }, function (error) {
