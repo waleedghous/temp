@@ -52,7 +52,7 @@
                       auth_token as cookie
                   */
                   const token = encodeURIComponent(data.auth_token);
-                  const iframeUrl = `https://app.p.k2labs.org/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
+                  const iframeUrl = `https://w2.p.k2labs.org/safari-cookie-issue/en-US/#/safety/events;start_date=2023-09-04;end_date=2023-12-05;risk_levels=critical,high,medium;coaching_status=all;only_with_videos=true;all_drive_events=false?geotab_auth_token=${token}`;
                   loadURLInIframe(iframeUrl)
                   callback();
                 })
